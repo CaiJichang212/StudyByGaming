@@ -167,3 +167,82 @@ $RECYCLE.BIN/
 # Logs
 logs/
 *.log
+
+# ===== Frontend (Node.js / Vite / React / TS) =====
+node_modules/
+.pnp
+.pnp.js
+.yarn/
+.yarn-integrity
+.npm
+.pnpm-store/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build output
+dist/
+dist-ssr/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.vercel/
+.netlify/
+.turbo/
+.parcel-cache/
+.cache/
+
+# Vite
+*.local
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+.tscache/
+
+# Testing (frontend)
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+.vitest-cache/
+
+# Storybook
+storybook-static/
+
+# Bundle artifacts (MVP)
+src/mvp/bundle.html
+
+# ===== Backend (Node) =====
+# Runtime
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ORM
+prisma/migrations/dev/
+*.sqlite
+*.sqlite3
+*.db
+
+# Docker
+.docker/
+
+# ===== Env / Secrets =====
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# ===== Editor / Misc =====
+.history/
+.tern-port
