@@ -1,0 +1,1 @@
+CANN社区版 8.5.0 Ascend C算子开发指南 01.pdf已经被转换成markdown文档，保存在“pdf2md/output/method3_pymupdf”目录下。请精准检索使用需要的章节内容。
