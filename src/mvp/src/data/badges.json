@@ -1,0 +1,20 @@
+[
+  {
+    "id": "badge_add_journeyman",
+    "name": "Add 算子见习开发者",
+    "description": "在 Boss 战中总分 ≥ 80，证明你已掌握 Add 自定义算子的开发流程。",
+    "icon": "🏆"
+  },
+  {
+    "id": "badge_first_blood",
+    "name": "初出茅庐",
+    "description": "完成第一个关卡，迈出 NPU 学习的第一步。",
+    "icon": "⚔️"
+  },
+  {
+    "id": "badge_explorer",
+    "name": "全境探索者",
+    "description": "完成全部 5 个新手村关卡。",
+    "icon": "🗺️"
+  }
+]

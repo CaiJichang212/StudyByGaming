@@ -1,0 +1,160 @@
+[
+  {
+    "id": "q0_intro",
+    "order": 0,
+    "title": "新手村入口",
+    "subtitle": "这本 2517 页文档到底讲什么？",
+    "story": "欢迎来到 NPU 新手村。在你面前是一本厚达 2517 页的《Ascend C 算子开发指南》。别慌——先看清地图，再出发。",
+    "icon": "🗺️",
+    "accent": "from-cyan-500/20 to-blue-500/10",
+    "learningObjectives": [
+      "理解 Ascend C 文档的四大板块结构",
+      "明确新手村的学习路径"
+    ],
+    "cards": [
+      {
+        "title": "四大板块",
+        "body": "文档分为：入门教程（上手）、编程指南（原理）、算子实践参考（案例）、API 参考（查阅）。新手村主要走入门教程。"
+      },
+      {
+        "title": "学习路径",
+        "body": "从「这是什么」到「跑通 HelloWorld」，再到「写一个 Add 算子」，循序渐进，每一关只学一件事。"
+      }
+    ],
+    "challengeIds": ["c0_doc_structure_match"],
+    "unlockAfter": [],
+    "rewardXp": 40,
+    "badgeId": "badge_first_blood"
+  },
+  {
+    "id": "q1_what_is",
+    "order": 1,
+    "title": "认识 Ascend C",
+    "subtitle": "它究竟是什么？",
+    "story": "穿过村口，你遇到第一位导师。他问你：Ascend C 到底是用来做什么的？答对才能拿到通往下一关的钥匙。",
+    "icon": "⚡",
+    "accent": "from-cyan-500/20 to-teal-500/10",
+    "learningObjectives": [
+      "理解 Ascend C 是 CANN 面向算子开发的编程语言",
+      "了解 Ascend C 的多层 API 体系"
+    ],
+    "cards": [
+      {
+        "title": "Ascend C 是什么",
+        "body": "Ascend C 是 CANN 针对算子开发场景推出的编程语言，原生支持 C/C++ 标准，编写的算子经编译器和运行时调度运行在昇腾 AI 处理器上。"
+      },
+      {
+        "title": "四层 API",
+        "body": "基础 API（单指令级）、高阶 API（卷积/矩阵等公共算法）、算子模板库（简化 Tiling）、Python 前端 PyAsc。"
+      }
+    ],
+    "challengeIds": ["c1_usage_choice", "c1_api_layers_multi"],
+    "unlockAfter": ["q0_intro"],
+    "rewardXp": 70,
+    "badgeId": null
+  },
+  {
+    "id": "q2_env",
+    "order": 2,
+    "title": "环境准备装备栏",
+    "subtitle": "出发前检查你的背包",
+    "story": "地下城前是装备栏。你必须挑对工具：CANN、环境变量、CMake。带错了，路上就会栽跟头。",
+    "icon": "🛠️",
+    "accent": "from-amber-500/20 to-orange-500/10",
+    "learningObjectives": [
+      "掌握 Ascend C 开发的环境准备清单",
+      "理解 set_env.sh 的作用"
+    ],
+    "cards": [
+      {
+        "title": "CANN 与环境变量",
+        "body": "先安装 CANN 软件包，再以 CANN 运行用户执行 source ${install_path}/set_env.sh 配置环境变量（install_path 如 /usr/local/Ascend/cann）。"
+      },
+      {
+        "title": "构建工具",
+        "body": "需要满足版本要求的 CMake 来组织工程（project kernel_samples LANGUAGES ASC CXX）。Ascend C 原生支持 C/C++。"
+      }
+    ],
+    "challengeIds": ["c2_env_multi"],
+    "unlockAfter": ["q1_what_is"],
+    "rewardXp": 50,
+    "badgeId": null
+  },
+  {
+    "id": "q3_helloworld",
+    "order": 3,
+    "title": "HelloWorld 洞穴",
+    "subtitle": "你的第一个核函数",
+    "story": "洞穴深处回响着「Hello」。你要把 ACL 运行时的召唤咒语按正确顺序念出，才能唤醒沉睡的核函数。",
+    "icon": "🌀",
+    "accent": "from-violet-500/20 to-purple-500/10",
+    "learningObjectives": [
+      "理解核函数的 <<<>>> 调用与同步",
+      "掌握 ACL 运行时的标准调用流程"
+    ],
+    "cards": [
+      {
+        "title": "核函数限定",
+        "body": "HelloWorld 核函数用 __global__ __vector__ void hello_world() 声明，表示从 Host 调用、在 Device 的 Vector 上执行。"
+      },
+      {
+        "title": "启动与同步",
+        "body": "Host 侧用 hello_world<<<blockDim, nullptr, stream>>>() 异步启动，再用 aclrtSynchronizeStream(stream) 等待执行完成。"
+      }
+    ],
+    "challengeIds": ["c3_acl_order"],
+    "unlockAfter": ["q2_env"],
+    "rewardXp": 60,
+    "badgeId": null
+  },
+  {
+    "id": "q4_add_dungeon",
+    "order": 4,
+    "title": "Add 算子地下城",
+    "subtitle": "搬运、计算、再搬运",
+    "story": "地下城的核心是一场仪式：把 x 和 y 从 Global Memory 搬到 Local，在 Local 完成加法，再搬回 Global。你能否把接口和流水线配对正确？",
+    "icon": "🏰",
+    "accent": "from-emerald-500/20 to-green-500/10",
+    "learningObjectives": [
+      "理解 Add 算子 CopyIn→Compute→CopyOut 流水线",
+      "识别 DataCopy、Add、TQue、Tensor 等接口的作用"
+    ],
+    "cards": [
+      {
+        "title": "Add 三步流程",
+        "body": "算子分析（明确数学表达式与规格）→ 核函数开发（实现 KernelAdd）→ 运行验证（Host 调用并校验结果）。"
+      },
+      {
+        "title": "设计规格",
+        "body": "AddCustom：输入 x、y，输出 z；shape=(8,2048)，float，ND。所需接口：DataCopy、Add、AllocTensor/FreeTensor、EnQue/DeQue。"
+      }
+    ],
+    "challengeIds": ["c4_api_match", "c4_pipeline_order"],
+    "unlockAfter": ["q3_helloworld"],
+    "rewardXp": 100,
+    "badgeId": null
+  },
+  {
+    "id": "q5_boss",
+    "order": 5,
+    "title": "Boss 战",
+    "subtitle": "你能描述一个 Add 算子吗？",
+    "story": "新手村的最终考验。Boss 会从规格、流程、接口、核函数声明五个维度同时发难。总分 ≥ 80，才能拿到「Add 算子见习开发者」徽章。",
+    "icon": "🐲",
+    "accent": "from-rose-500/20 to-red-500/10",
+    "learningObjectives": [
+      "综合验证对 Add 自定义算子开发的理解"
+    ],
+    "cards": [
+      {
+        "title": "Boss 战规则",
+        "body": "共 5 道子题：输入输出、规格、流水线、所需接口、核函数限定符。总分 100，≥ 80 通关并颁发徽章。"
+      }
+    ],
+    "challengeIds": [],
+    "unlockAfter": ["q4_add_dungeon"],
+    "rewardXp": 150,
+    "badgeId": "badge_add_journeyman",
+    "isBoss": true
+  }
+]

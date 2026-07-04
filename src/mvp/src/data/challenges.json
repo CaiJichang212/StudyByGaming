@@ -1,0 +1,265 @@
+[
+  {
+    "id": "c0_doc_structure_match",
+    "type": "matching",
+    "title": "章节功能配对",
+    "prompt": "把《Ascend C 算子开发指南》的四大板块和它们的功能配对。",
+    "pairs": [
+      { "left": "入门教程", "right": "从零跑通 HelloWorld 与 Add 算子" },
+      { "left": "编程指南", "right": "编程模型、核函数、TQue/TBuf、Tiling" },
+      { "left": "算子实践参考", "right": "SIMD、Matmul、调试调优案例" },
+      { "left": "API 参考", "right": "接口参数、约束、DataCopy/Add 等" }
+    ],
+    "correctAnswer": {
+      "入门教程": "从零跑通 HelloWorld 与 Add 算子",
+      "编程指南": "编程模型、核函数、TQue/TBuf、Tiling",
+      "算子实践参考": "SIMD、Matmul、调试调优案例",
+      "API 参考": "接口参数、约束、DataCopy/Add 等"
+    },
+    "explanation": "2517 页文档天然分成四块：入门教程带你上手，编程指南讲原理，算子实践给案例，API 参考做查阅。新手村主要走「入门教程」。",
+    "hint": "想想你第一次学一门技术：先跑通 demo，再学原理，再看高手案例，最后查手册。",
+    "tags": ["doc_structure", "learning_path"],
+    "xp": 40,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "目录", "page": 35 }
+    ]
+  },
+  {
+    "id": "c1_usage_choice",
+    "type": "single_choice",
+    "title": "Ascend C 的主要用途",
+    "prompt": "Ascend C 主要用于做什么？",
+    "options": [
+      "开发普通 Web 后端服务",
+      "在昇腾 AI 处理器上开发高性能自定义算子",
+      "替代 Python 做数据分析",
+      "管理 Linux 系统进程"
+    ],
+    "correctAnswer": "在昇腾 AI 处理器上开发高性能自定义算子",
+    "explanation": "Ascend C 是 CANN 针对算子开发场景推出的编程语言，基于它编写的算子程序经编译器和运行时调度，运行在昇腾 AI 处理器上。",
+    "hint": "关键词是「算子」和「昇腾 AI 处理器」，不是通用编程。",
+    "tags": ["ascend_c_intro"],
+    "xp": 30,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.1 什么是Ascend C", "page": 36 }
+    ]
+  },
+  {
+    "id": "c1_api_layers_multi",
+    "type": "multi_choice",
+    "title": "Ascend C 的 API 层级",
+    "prompt": "Ascend C 提供了哪些层级的 API？（多选）",
+    "options": [
+      "基础 API（基于 Tensor 的 C++ 类库，单指令级抽象）",
+      "高阶 API（封装单核公共算法，如卷积、矩阵运算）",
+      "算子模板库（完整实现参考，简化 Tiling）",
+      "Python 前端 PyAsc（基于 Python 接口开发算子）",
+      "Web 前端 React 组件库"
+    ],
+    "correctAnswer": [
+      "基础 API（基于 Tensor 的 C++ 类库，单指令级抽象）",
+      "高阶 API（封装单核公共算法，如卷积、矩阵运算）",
+      "算子模板库（完整实现参考，简化 Tiling）",
+      "Python 前端 PyAsc（基于 Python 接口开发算子）"
+    ],
+    "explanation": "Ascend C 提供四层 API：基础 API、高阶 API、算子模板库、Python 前端(PyAsc)，满足从底层灵活控制到快速开发的多种诉求。React 是前端 UI 库，与算子开发无关。",
+    "hint": "一共四层，都和「算子/芯片编程」相关，没有 Web 前端的东西。",
+    "tags": ["api_layers", "ascend_c_intro"],
+    "xp": 40,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.1 什么是Ascend C", "page": 36 }
+    ]
+  },
+  {
+    "id": "c2_env_multi",
+    "type": "multi_choice",
+    "title": "开发前的必要准备",
+    "prompt": "开发 Ascend C 算子前，以下哪些准备通常是必要的？（多选，注意干扰项）",
+    "options": [
+      "安装 CANN 软件包（开发环境与运行环境）",
+      "执行 source ${install_path}/set_env.sh 配置环境变量",
+      "安装满足版本要求的 CMake",
+      "安装 Photoshop 用于设计图标",
+      "具备一定的 C/C++ 基础"
+    ],
+    "correctAnswer": [
+      "安装 CANN 软件包（开发环境与运行环境）",
+      "执行 source ${install_path}/set_env.sh 配置环境变量",
+      "安装满足版本要求的 CMake",
+      "具备一定的 C/C++ 基础"
+    ],
+    "explanation": "文档明确：先装 CANN，再以 CANN 运行用户执行 source set_env.sh 设置环境变量，CMake 用于构建工程；Ascend C 原生支持 C/C++，所以需要 C/C++ 基础。Photoshop 与算子开发无关。",
+    "hint": "set_env.sh 里的 install_path 是 CANN 安装目录（如 /usr/local/Ascend/cann）。设计软件不属于开发链路。",
+    "tags": ["environment", "cann", "cmake"],
+    "xp": 50,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.2 环境准备 / 1.3.2", "page": 38 }
+    ]
+  },
+  {
+    "id": "c3_acl_order",
+    "type": "ordering",
+    "title": "HelloWorld 调用时序",
+    "prompt": "把 Host 侧调用 HelloWorld 核函数的正确顺序排列出来。",
+    "items": [
+      "aclInit(nullptr)",
+      "aclrtSetDevice(deviceId)",
+      "aclrtCreateStream(&stream)",
+      "hello_world<<<blockDim, nullptr, stream>>>()",
+      "aclrtSynchronizeStream(stream)",
+      "释放资源（Stream/Context/去初始化）"
+    ],
+    "correctAnswer": [
+      "aclInit(nullptr)",
+      "aclrtSetDevice(deviceId)",
+      "aclrtCreateStream(&stream)",
+      "hello_world<<<blockDim, nullptr, stream>>>()",
+      "aclrtSynchronizeStream(stream)",
+      "释放资源（Stream/Context/去初始化）"
+    ],
+    "explanation": "ACL 运行时标准流程：先 aclInit 初始化，再 setDevice 选设备，createStream 创建流，用 <<<>>> 三括号异步启动核函数，同步等待结果，最后释放资源。顺序错了会报错或拿不到结果。",
+    "hint": "口诀：初始化 → 选设备 → 建流 → 启动核函数 → 同步 → 释放。",
+    "tags": ["kernel_launch", "acl_runtime", "stream"],
+    "xp": 60,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.1 HelloWorld", "page": 38 }
+    ]
+  },
+  {
+    "id": "c4_api_match",
+    "type": "matching",
+    "title": "Add 算子 API 装备配对",
+    "prompt": "把 Add 算子开发用到的接口和它的作用配对。",
+    "pairs": [
+      { "left": "DataCopy", "right": "Global Memory 与 Local Memory 之间搬运数据" },
+      { "left": "Add", "right": "完成矢量加法计算" },
+      { "left": "AllocTensor / FreeTensor", "right": "申请和释放 Tensor" },
+      { "left": "EnQue / DeQue", "right": "Queue 队列管理与流水同步" }
+    ],
+    "correctAnswer": {
+      "DataCopy": "Global Memory 与 Local Memory 之间搬运数据",
+      "Add": "完成矢量加法计算",
+      "AllocTensor / FreeTensor": "申请和释放 Tensor",
+      "EnQue / DeQue": "Queue 队列管理与流水同步"
+    },
+    "explanation": "Add 算子的核心是：DataCopy 搬入 → Add 计算 → DataCopy 搬出；Tensor 用 AllocTensor/FreeTensor 管理，EnQue/DeQue 让 CopyIn/Compute/CopyOut 三级流水并行起来。",
+    "hint": "搬运用 DataCopy，算加法用 Add，Tensor 的生灭用 Alloc/Free，队列同步用 EnQue/DeQue。",
+    "tags": ["datacopy", "vector_add", "queue", "tensor"],
+    "xp": 60,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 Add 算子分析", "page": 42 }
+    ]
+  },
+  {
+    "id": "c4_pipeline_order",
+    "type": "ordering",
+    "title": "单核流水线顺序",
+    "prompt": "把 Add 算子单核处理的流水线阶段排成正确顺序。",
+    "items": [
+      "CopyIn（从 GM 搬入 Local）",
+      "Compute（在 Local 执行 Add）",
+      "CopyOut（结果搬回 GM）"
+    ],
+    "correctAnswer": [
+      "CopyIn（从 GM 搬入 Local）",
+      "Compute（在 Local 执行 Add）",
+      "CopyOut（结果搬回 GM）"
+    ],
+    "explanation": "矢量编程范式固定三段式：CopyIn 把数据从 Global Memory 搬到 Local Memory，Compute 在 Local 上用 Add 计算，CopyOut 再把结果搬回 Global Memory。配合队列可实现三级流水并行。",
+    "hint": "数据流动方向：进 → 算 → 出。",
+    "tags": ["add_custom", "pipeline", "vector_add"],
+    "xp": 40,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 核函数开发", "page": 43 }
+    ]
+  },
+  {
+    "id": "c5_io_multi",
+    "type": "multi_choice",
+    "title": "Add 算子的输入输出",
+    "prompt": "Add 算子的输入和输出分别是哪些？（多选）",
+    "options": [
+      "输入 x",
+      "输入 y",
+      "输出 z",
+      "输入 w（偏置）"
+    ],
+    "correctAnswer": ["输入 x", "输入 y", "输出 z"],
+    "explanation": "Add 算子数学表达式为 z = x + y，两个输入 x、y，一个输出 z；没有偏置 w。",
+    "hint": "加法只有两个加数和一个和，没有第三个操作数。",
+    "tags": ["add_custom", "operator_spec"],
+    "xp": 30,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 算子分析", "page": 42 }
+    ]
+  },
+  {
+    "id": "c5_spec_choice",
+    "type": "single_choice",
+    "title": "Add 算子的规格",
+    "prompt": "本样例中 Add 算子的 shape、数据类型、format 是？",
+    "options": [
+      "shape=(8,2048)，float，ND",
+      "shape=(1,1024)，int8，NCHW",
+      "shape=(16,16)，half，NHWC",
+      "shape=(2048,)，double，ND"
+    ],
+    "correctAnswer": "shape=(8,2048)，float，ND",
+    "explanation": "表1-1 设计规格明确：x/y/z 的 shape 均为 (8,2048)，数据类型 float，format 为 ND，输出与输入同 shape 同类型。",
+    "hint": "数字里有个 8 和 2048，类型是单精度浮点，格式是最朴素的 ND。",
+    "tags": ["add_custom", "operator_spec"],
+    "xp": 30,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 表1-1", "page": 42 }
+    ]
+  },
+  {
+    "id": "c5_apis_multi",
+    "type": "multi_choice",
+    "title": "Add 实现所需接口",
+    "prompt": "实现 Add 算子需要用到以下哪些接口？（多选）",
+    "options": [
+      "DataCopy",
+      "Add",
+      "AllocTensor",
+      "FreeTensor",
+      "EnQue",
+      "DeQue",
+      "Mmad（矩阵乘）"
+    ],
+    "correctAnswer": [
+      "DataCopy",
+      "Add",
+      "AllocTensor",
+      "FreeTensor",
+      "EnQue",
+      "DeQue"
+    ],
+    "explanation": "Add 算子需要：DataCopy 搬运、Add 计算、AllocTensor/FreeTensor 管理 Tensor、EnQue/DeQue 管理队列同步。Mmad 是矩阵乘接口，Add 用不到。",
+    "hint": "加法用不到矩阵乘 Mmad；其余六个正好对应「搬运、计算、Tensor 管理、队列同步」。",
+    "tags": ["datacopy", "vector_add", "queue", "tensor"],
+    "xp": 40,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 算子分析", "page": 42 }
+    ]
+  },
+  {
+    "id": "c5_kernel_blank",
+    "type": "code_blank",
+    "title": "核函数限定符填空",
+    "prompt": "补全 Add 算子核函数的声明，使其运行在设备端 AI Core 上。",
+    "codeTemplate": "___1___ ___2___ void add_custom(GM_ADDR x, GM_ADDR y, GM_ADDR z, AddCustomTilingData tiling)",
+    "blanks": [
+      { "id": "1", "answer": "__global__", "placeholder": "限定符1" },
+      { "id": "2", "answer": "__aicore__", "placeholder": "限定符2" }
+    ],
+    "correctAnswer": { "1": "__global__", "2": "__aicore__" },
+    "explanation": "核函数需用 __global__ 表示它是从 Host 调用、在 Device 执行的入口；用 __aicore__ 限定它运行在 AI Core 上。两个都不能少。",
+    "hint": "第一个表示「全局可被 Host 调用」，第二个表示「跑在 AI Core 上」。",
+    "tags": ["kernel_qualifier", "add_custom"],
+    "xp": 50,
+    "sourceRefs": [
+      { "doc": "Ascend C 算子开发指南", "chapter": "1.3.2 核函数开发", "page": 43 }
+    ]
+  }
+]
